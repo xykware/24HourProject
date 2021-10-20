@@ -33,5 +33,28 @@ namespace _24HourProject.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public IEnumerable<ReplyDetail> GetRepliesByCommentId(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Replies
+                        .Where(e => e.CommentId == id)
+                        .Select(
+                            e =>
+                                new ReplyDetail
+                                {
+                                    Id = e.Id,
+                                    CommentId = e.CommentId,
+                                    Text = e.Text,
+                                    AuthorId = e.AuthorId
+                                }
+                        );
+
+                return query.ToArray();
+            }
+        }
     }
 }
