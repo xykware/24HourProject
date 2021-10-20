@@ -8,7 +8,7 @@ namespace _24HourProject.Models
 {
     public class PostList
     {
-        public int NoteId { get; set; }
+        public int PostId { get; set; }
 
         public string Title { get; set; }
 
