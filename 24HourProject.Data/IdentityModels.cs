@@ -27,7 +27,7 @@ namespace _24HourProject.Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
@@ -47,20 +47,20 @@ namespace _24HourProject.Data
                 .Add(new IdentityUserRoleConfiguration());
         }
 
-        public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
+    }
+    public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
+    {
+        public IdentityUserLoginConfiguration()
         {
-            public IdentityUserLoginConfiguration()
-            {
-                HasKey(iul => iul.UserId);
-            }
+            HasKey(iul => iul.UserId);
         }
+    }
 
-        public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
+    public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
+    {
+        public IdentityUserRoleConfiguration()
         {
-            public IdentityUserRoleConfiguration()
-            {
-                HasKey(iur => iur.UserId);
-            }
+            HasKey(iur => iur.UserId);
         }
     }
 }

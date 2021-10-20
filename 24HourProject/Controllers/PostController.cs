@@ -16,13 +16,64 @@ namespace _24HourProject.Controllers
         [HttpGet]
         public IHttpActionResult GetAllPost()
         {
-            PostService
+            PostService postService = CreatePostService();
+            var posts = postService.GetPosts();
+            return Ok(posts);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetPostById(int id)
+        {
+            PostService postService = CreatePostService();
+            var post = postService.GetPostById(id);
+            return Ok(post);
         }
 
         [HttpPost]
         public IHttpActionResult CreatePostService(PostCreate post)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest("Didnt meet requirements.");
+            }
 
+            var service = CreatePostService();
+
+            if(!service.CreatePost(post))
+            {
+                return InternalServerError();
+            }
+            return Ok("Successfully posted.");
+        }
+
+        [HttpPut]
+        public IHttpActionResult EditPost(PostEdit post)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var service = CreatePostService();
+
+            if(!service.UpdatePost(post))
+            {
+                return InternalServerError();
+            }
+            return Ok("Successfully updated.");
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeletePostById(int id)
+        {
+            var service = CreatePostService();
+
+            if(!service.DeletePost(id))
+            {
+                return InternalServerError();
+            }
+
+            return Ok();
         }
 
         //Helper Method

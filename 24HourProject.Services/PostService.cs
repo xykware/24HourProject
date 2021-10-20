@@ -73,7 +73,7 @@ namespace _24HourProject.Services
             }
         }
 
-        public bool UpdateNote(PostEdit post)
+        public bool UpdatePost(PostEdit post)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -91,7 +91,7 @@ namespace _24HourProject.Services
             }
         }
 
-        public bool DeleteNote(int postId)
+        public bool DeletePost(int postId)
         {
             using (var ctx = new ApplicationDbContext())
             {
