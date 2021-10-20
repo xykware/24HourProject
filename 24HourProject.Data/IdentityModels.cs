@@ -1,8 +1,6 @@
 ﻿using System.Data.Entity;
-
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
-
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -35,8 +33,9 @@ namespace _24HourProject.Data
             return new ApplicationDbContext();
         }
 
-
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Reply> Replies { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -65,7 +64,5 @@ namespace _24HourProject.Data
         {
             HasKey(iur => iur.UserId);
         }
-        public DbSet<Comment> Comments { get; set; }
-
     }
 }
